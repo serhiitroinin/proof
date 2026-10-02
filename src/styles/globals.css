@@ -1,0 +1,483 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* 13px base. xs is the label size, sm the control and body size. */
+  --text-xs: 0.6875rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-border: var(--card-border);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-fill: var(--fill);
+  --color-fill-hover: var(--fill-hover);
+  --color-fill-active: var(--fill-active);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-heavy: var(--border-heavy);
+  --color-border-control: var(--border-control);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-selection: var(--selection);
+  --color-tool: var(--tool);
+  --color-tool-foreground: var(--tool-foreground);
+  --color-tool-subtle: var(--tool-subtle);
+  --color-tool-text: var(--tool-text);
+  --color-tool-border: var(--tool-border);
+  --color-family-butler: var(--family-butler);
+  --color-family-easel: var(--family-easel);
+  --color-family-sculpt: var(--family-sculpt);
+  --color-family-reins: var(--family-reins);
+  --color-family-glu: var(--family-glu);
+  --color-family-strap: var(--family-strap);
+  --color-family-vellum: var(--family-vellum);
+  --color-brand-text: var(--brand-text);
+  --color-brand-subtle: var(--brand-subtle);
+  --color-destructive: var(--destructive);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-destructive-border: var(--destructive-border);
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-success-border: var(--success-border);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-warning-border: var(--warning-border);
+  --color-info: var(--info);
+  --color-info-subtle: var(--info-subtle);
+  --color-info-border: var(--info-border);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+  --color-skeleton: var(--skeleton);
+  --color-skeleton-highlight: var(--skeleton-highlight);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-chart-1: var(--chart-1);
+
+  /* Radius on the 4px grid: controls 8, inner parts 4, cards 12, nothing above 16. */
+  --radius-xs: calc(var(--radius) * 0.25);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2);
+
+  /* Elevation: 1 raised, 2 card, 3 overlay (menu, popover, toast), 4 modal. Plus the control
+     depth: raise (buttons), raise-control (ink fills), well (inputs, tracks), pressed, thumb. */
+  --shadow-xs: var(--elev-1);
+  --shadow-sm: var(--elev-1);
+  --shadow-md: var(--elev-2);
+  --shadow-lg: var(--elev-3);
+  --shadow-xl: var(--elev-4);
+  --shadow-2xl: var(--elev-4);
+  --shadow-raise: var(--raise);
+  --shadow-raise-control: var(--raise-control);
+  --shadow-well: var(--well);
+  --shadow-pressed: var(--pressed);
+  --shadow-thumb: var(--thumb);
+
+  /* Motion: 220ms on one curve. Presses sink, surfaces enter from scale(0.96) and leave in
+     0.7 of the time. Durations are multiples of --dur. */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --default-transition-duration: 220ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+  --animate-enter: enter 220ms cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-exit: exit 154ms cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-pop: pop 352ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-draw: draw 880ms cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-flash: flash 1.4s cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-breathe: breathe 1.98s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-fall: fall 660ms linear both;
+  --animate-matrix: matrix 1.2s linear infinite;
+  --animate-rise: rise 264ms cubic-bezier(0.2, 0, 0, 1) both;
+
+  @keyframes enter { from { opacity: 0; transform: scale(0.96); } }
+  @keyframes exit { to { opacity: 0; transform: scale(0.96); } }
+  @keyframes pop { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+  @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes flash { 0%, 30% { background-color: var(--tool-subtle); } 100% { background-color: transparent; } }
+  @keyframes breathe { 50% { opacity: 0.35; transform: scale(0.8); } }
+  @keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(4px); } }
+  @keyframes fall {
+    0% { transform: translateY(var(--fall, 12px)) rotate(-24deg); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+    70% { transform: none; animation-timing-function: cubic-bezier(0, 0.55, 0.45, 1); }
+    85% { transform: translateY(-3px) rotate(6deg); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+    100% { transform: none; }
+  }
+  @keyframes matrix {
+    0% { background-color: var(--tool); border-radius: 1px; transform: scale(1.15); }
+    8% { background-color: var(--foreground); border-radius: 50%; transform: none; }
+    30%, 100% { background-color: var(--border-heavy); }
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: #f8fafd;
+  --foreground: #191b1c;
+  --card: #ffffff;
+  --card-foreground: #191b1c;
+  --card-border: #e1e3e6;
+  --popover: #ffffff;
+  --popover-foreground: #191b1c;
+  --primary: #191b1c;
+  --primary-foreground: #f8fafd;
+  --primary-hover: #2a2c2d;
+  --secondary: #edeff2;
+  --secondary-foreground: #191b1c;
+  --muted: #f4f5f8;
+  --muted-foreground: #595b5e;
+  --faint: #6a6b6e;
+  --accent: #edeff2;
+  --accent-foreground: #191b1c;
+  --fill: #edeff2;
+  --fill-hover: #e7e9ec;
+  --fill-active: #e1e3e6;
+  --border: #d8dbde;
+  --border-strong: #caccd0;
+  --border-heavy: #adb0b3;
+  --border-control: #8b8e91;
+  --input: #caccd0;
+  --ring: #5e6b4e;
+  --selection: #e7ede0;
+  --tool: #5e6b4e;
+  --tool-foreground: #ffffff;
+  --tool-subtle: #edf2e8;
+  --tool-text: #5c684e;
+  --tool-border: #bec8b1;
+  /* Tool family: one hue per tool, each at 3:1 on the paper. */
+  --family-butler: #5e6b4e;
+  --family-easel: #e2482b;
+  --family-sculpt: #c08200;
+  --family-reins: #3d5a80;
+  --family-glu: #5f8f72;
+  --family-strap: #c8644a;
+  --family-vellum: #6a5acd;
+  --brand-text: #215ac9;
+  --brand-subtle: #e8f0ff;
+  --destructive: #9c443b;
+  --destructive-subtle: #ffebe8;
+  --destructive-border: #fbada2;
+  --success: #21763c;
+  --success-subtle: #def8e2;
+  --success-border: #98d5a4;
+  --warning: #865900;
+  --warning-subtle: #ffedd5;
+  --warning-border: #e8bb7e;
+  --info: #2266a4;
+  --info-subtle: #e5f2ff;
+  --info-border: #95c9ff;
+  --surface-1: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #ffffff;
+  --surface-4: #ffffff;
+  --skeleton: #e7e9ec;
+  --skeleton-highlight: #edeff2;
+  --chart-2: #3b9555;
+  --chart-3: #e8aa4e;
+  --chart-4: #bb584d;
+  --chart-5: #787a7d;
+  --sidebar: #f4f5f8;
+  --sidebar-foreground: #191b1c;
+  --sidebar-primary: #191b1c;
+  --sidebar-primary-foreground: #f8fafd;
+  --sidebar-accent: #e7e9ec;
+  --sidebar-accent-foreground: #191b1c;
+  --sidebar-border: #d8dbde;
+  --sidebar-ring: #5e6b4e;
+  --brand: #2f6feb;
+  --brand-foreground: #ffffff;
+  --chart-1: #2f6feb;
+  --elev-1: 0 1px 2px rgb(0 0 0 / 0.056);
+  --elev-2: 0 1px 2px rgb(0 0 0 / 0.035), 0 4px 12px -2px rgb(0 0 0 / 0.070);
+  --elev-3: 0 0 0 .5px rgb(0 0 0 / .12), 0 4px 8px -2px rgb(0 0 0 / 0.068), 0 16px 32px -8px rgb(0 0 0 / 0.176);
+  --elev-4: 0 0 0 .5px rgb(0 0 0 / .16), 0 8px 16px -4px rgb(0 0 0 / 0.088), 0 32px 64px -12px rgb(0 0 0 / 0.270);
+  --raise: inset 0 1px 0 rgb(255 255 255 / 0.490), 0 1px 1px rgb(0 0 0 / 0.035), 0 1px 3px -1px rgb(0 0 0 / 0.070);
+  --raise-control: inset 0 1px 0 rgb(255 255 255 / 0.154), inset 0 -1px 0 rgb(0 0 0 / 0.084), 0 1px 2px rgb(0 0 0 / 0.098), 0 2px 6px -2px color-mix(in oklch, var(--primary) 31%, transparent);
+  --sheen: linear-gradient(rgb(255 255 255 / 0.084), rgb(255 255 255 / 0) 60%);
+  --well: inset 0 1px 2px rgb(0 0 0 / 0.049);
+  --pressed: inset 0 1px 3px rgb(0 0 0 / 0.098);
+  --thumb: 0 0 0 .5px rgb(0 0 0 / 0.122), 0 1px 2px rgb(0 0 0 / 0.126), 0 2px 5px -1px rgb(0 0 0 / 0.084);
+}
+
+.dark {
+  --background: #151618;
+  --foreground: #eaebed;
+  --card: #1a1b1d;
+  --card-foreground: #eaebed;
+  --card-border: #292b2d;
+  --popover: #242527;
+  --popover-foreground: #eaebed;
+  --primary: #eaebed;
+  --primary-foreground: #151618;
+  --primary-hover: #d3d4d6;
+  --secondary: #202123;
+  --secondary-foreground: #eaebed;
+  --muted: #1a1b1d;
+  --muted-foreground: #afb1b4;
+  --faint: #88898d;
+  --accent: #202123;
+  --accent-foreground: #eaebed;
+  --fill: #202123;
+  --fill-hover: #252628;
+  --fill-active: #292b2d;
+  --border: #303234;
+  --border-strong: #3b3d40;
+  --border-heavy: #535558;
+  --border-control: #67696c;
+  --input: #3b3d40;
+  --ring: #768365;
+  --selection: #22261e;
+  --tool: #798668;
+  --tool-foreground: #151618;
+  --tool-subtle: #1e211b;
+  --tool-text: #a7b398;
+  --tool-border: #3f4637;
+  --family-butler: #8a9879;
+  --family-easel: #f2573a;
+  --family-sculpt: #ffb020;
+  --family-reins: #7594be;
+  --family-glu: #6f9f82;
+  --family-strap: #d77157;
+  --family-vellum: #8b7ef5;
+  --brand-text: #80adff;
+  --brand-subtle: #132037;
+  --destructive: #ec9287;
+  --destructive-subtle: #2d1a18;
+  --destructive-border: #66322c;
+  --success: #79c288;
+  --success-subtle: #152418;
+  --success-border: #224e2d;
+  --warning: #ffce8a;
+  --warning-subtle: #291e0e;
+  --warning-border: #5a3d0a;
+  --info: #76b3f1;
+  --info-subtle: #14212e;
+  --info-border: #21466a;
+  --surface-1: #1a1b1e;
+  --surface-2: #1f2022;
+  --surface-3: #242527;
+  --surface-4: #292a2c;
+  --skeleton: #2b2c2e;
+  --skeleton-highlight: #323335;
+  --chart-2: #46a05e;
+  --chart-3: #e8aa4e;
+  --chart-4: #ca655a;
+  --chart-5: #737478;
+  --sidebar: #151618;
+  --sidebar-foreground: #eaebed;
+  --sidebar-primary: #eaebed;
+  --sidebar-primary-foreground: #151618;
+  --sidebar-accent: #252628;
+  --sidebar-accent-foreground: #eaebed;
+  --sidebar-border: #303234;
+  --sidebar-ring: #768365;
+  --brand: #3d7ffc;
+  --brand-foreground: #151618;
+  --chart-1: #3d7ffc;
+  --elev-1: inset 0 1px 0 rgb(255 255 255 / 0.035), 0 1px 2px rgb(0 0 0 / 0.280);
+  --elev-2: inset 0 1px 0 rgb(255 255 255 / 0.042), 0 0 0 1px rgb(0 0 0 / .3), 0 6px 16px -4px rgb(0 0 0 / 0.350);
+  --elev-3: 0 0 0 1px rgb(255 255 255 / .1), inset 0 1px 0 rgb(255 255 255 / 0.042), 0 8px 24px -4px rgb(0 0 0 / 0.540);
+  --elev-4: 0 0 0 1px rgb(255 255 255 / .14), inset 0 1px 0 rgb(255 255 255 / 0.056), 0 24px 64px -8px rgb(0 0 0 / 0.640);
+  --raise: inset 0 1px 0 rgb(255 255 255 / 0.049), 0 1px 2px rgb(0 0 0 / 0.315);
+  --raise-control: inset 0 1px 0 rgb(255 255 255 / 0.175), inset 0 -1px 0 rgb(0 0 0 / 0.105), 0 1px 2px rgb(0 0 0 / 0.350);
+  --sheen: linear-gradient(rgb(255 255 255 / 0.070), rgb(255 255 255 / 0) 60%);
+  --well: inset 0 1px 2px rgb(0 0 0 / 0.245);
+  --pressed: inset 0 1px 3px rgb(0 0 0 / 0.315);
+  --thumb: 0 0 0 .5px rgb(0 0 0 / .3), inset 0 1px 0 rgb(255 255 255 / 0.070), 0 1px 3px rgb(0 0 0 / 0.350);
+}
+
+/* Respect reduced motion everywhere: animations finish at once, transitions are instant. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+@utility sheen {
+  background-image: var(--sheen);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    @apply font-sans antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    @apply bg-selection;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   signature
+   Codes switched from the Brand › Signature page. Each is a data attribute on <html> (see
+   src/hooks/use-signature.ts); the Native preset is the absence of the attribute. The same
+   attributes on a [data-sig-preview] element scope a code to that element, so a tile can
+   preview one option. html-level rules skip anything inside a preview, and token overrides
+   land on body so a preview can read the originals from html.
+   ------------------------------------------------------------------------------------------ */
+
+html {
+  --sig-tool-subtle: var(--tool-subtle);
+  --sig-tool-text: var(--tool-text);
+  --sig-tool-border: var(--tool-border);
+  --sig-selection: var(--selection);
+  --sig-primary: var(--primary);
+  --sig-primary-foreground: var(--primary-foreground);
+  --sig-primary-hover: var(--primary-hover);
+}
+
+/* marker: how the accent marks the selected row, nav item and tab. "dot" keeps the row on the
+   neutral fill and adds one 4px accent dot at the left edge. */
+html[data-marker="dot"] [data-slot="item"][aria-selected="true"]:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="item"][aria-selected="true"],
+html[data-marker="dot"] [data-slot="item"][data-state="selected"]:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="item"][data-state="selected"],
+html[data-marker="dot"] [data-slot="sidebar-menu"] > li > [data-slot="sidebar-menu-sub-button"][data-active="true"]:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="sidebar-menu"] > li > [data-slot="sidebar-menu-sub-button"][data-active="true"],
+html[data-marker="dot"] [data-slot="sidebar-menu-button"][data-active="true"]:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="sidebar-menu-button"][data-active="true"] {
+  position: relative;
+  background-color: var(--fill);
+  color: var(--foreground);
+  border-color: var(--card-border);
+}
+html[data-marker="dot"] [data-slot="item"][aria-selected="true"]::before:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="item"][aria-selected="true"]::before,
+html[data-marker="dot"] [data-slot="item"][data-state="selected"]::before:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="item"][data-state="selected"]::before,
+html[data-marker="dot"] [data-slot="sidebar-menu"] > li > [data-slot="sidebar-menu-sub-button"][data-active="true"]::before:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="sidebar-menu"] > li > [data-slot="sidebar-menu-sub-button"][data-active="true"]::before,
+html[data-marker="dot"] [data-slot="sidebar-menu-button"][data-active="true"]::before:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="sidebar-menu-button"][data-active="true"]::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: var(--tool);
+  transform: translateY(-50%);
+}
+html[data-marker="dot"] [data-slot="item-group-marker"]:not([data-sig-preview] *),
+[data-sig-preview][data-marker="dot"] [data-slot="item-group-marker"] {
+  opacity: 0;
+}
+
+/* backdrop: the surface behind pages and canvases. */
+html[data-backdrop="dots"] body,
+[data-sig-preview][data-backdrop="dots"] {
+  background-image: radial-gradient(color-mix(in oklch, var(--border-strong) 70%, transparent) 0.6px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* frame: how cards and windows are edged. "offset" is a hard 4px plate in the heavy border. */
+html[data-frame="offset"] [data-slot="card"]:not([data-sig-preview] *),
+[data-sig-preview][data-frame="offset"] [data-slot="card"],
+html[data-frame="offset"] [data-slot="window"]:not([data-sig-preview] *),
+[data-sig-preview][data-frame="offset"] [data-slot="window"] {
+  box-shadow: 4px 4px 0 var(--border-heavy);
+  border-color: var(--border-heavy);
+}
+
+/* accent: how much surface the accent may cover. "ink" turns selection tints to the neutral
+   fill; "loud" lets display headings and labels take the accent. */
+html[data-accent="ink"] body,
+[data-sig-preview][data-accent="ink"] {
+  --tool-subtle: var(--fill-active);
+  --tool-text: var(--foreground);
+  --tool-border: var(--border-heavy);
+  --selection: var(--fill-active);
+}
+[data-sig-preview][data-accent="balanced"],
+[data-sig-preview][data-accent="loud"] {
+  --tool-subtle: var(--sig-tool-subtle);
+  --tool-text: var(--sig-tool-text);
+  --tool-border: var(--sig-tool-border);
+  --selection: var(--sig-selection);
+}
+html[data-accent="loud"] [data-display]:not([data-sig-preview] *),
+[data-sig-preview][data-accent="loud"] [data-display],
+html[data-accent="loud"] [data-label]:not([data-sig-preview] *),
+[data-sig-preview][data-accent="loud"] [data-label] {
+  color: var(--tool-text);
+}
+
+/* controls: whether primary controls are ink or the tool accent. */
+html[data-controls="accent"] body,
+[data-sig-preview][data-controls="accent"] {
+  --primary: var(--tool);
+  --primary-foreground: var(--tool-foreground);
+  --primary-hover: color-mix(in oklch, var(--tool) 88%, var(--foreground));
+}
+[data-sig-preview][data-controls="ink"] {
+  --primary: var(--sig-primary);
+  --primary-foreground: var(--sig-primary-foreground);
+  --primary-hover: var(--sig-primary-hover);
+}
+
+/* headings: the case of display headings. */
+html[data-headings="lower"] [data-display]:not([data-sig-preview] *),
+[data-sig-preview][data-headings="lower"] [data-display] {
+  text-transform: lowercase;
+}
+html[data-headings="upper"] [data-display]:not([data-sig-preview] *),
+[data-sig-preview][data-headings="upper"] [data-display] {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
