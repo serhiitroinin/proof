@@ -2,6 +2,7 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/u
 
 import { Example, Install, PageHeader, Section } from "./kit"
 import { components, demosFor } from "./registry"
+import { href } from "./router"
 
 export function ComponentPage({ name }: { name: string }) {
   const item = components.find((c) => c.name === name)!
@@ -9,7 +10,18 @@ export function ComponentPage({ name }: { name: string }) {
   return (
     <>
       <PageHeader group="Components" title={item.title} lead={item.description} meta={`@proof/${name}`} />
-      <Section title="Installation">
+      <Section
+        title="Installation"
+        note={
+          <>
+            Add the <code className="font-mono text-xs">@proof</code> registry first. See{" "}
+            <a href={href("intro", "get-started")} className="text-foreground underline underline-offset-4">
+              Get started
+            </a>
+            .
+          </>
+        }
+      >
         <Install name={name} />
       </Section>
       {demos.map(({ title, code, Component }) => (

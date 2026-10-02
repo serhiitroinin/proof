@@ -164,6 +164,8 @@ export function CopyButton({ text }: { text: string }) {
   )
 }
 
+export const REGISTRY_URL = "https://serhiitroinin.github.io/proof/r/{name}.json"
+
 export function Install({ name }: { name: string }) {
   return <Code>{`npx shadcn@latest add @proof/${name}`}</Code>
 }

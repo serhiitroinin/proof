@@ -13,7 +13,7 @@ import { Switch } from "@/components/ui/switch"
 import { ToolMark, type ToolName } from "@/components/ui/tool-mark"
 import { TOOL_PRESETS } from "@/lib/theme"
 
-import { Install, PageHeader, Section, Wordmark } from "../kit"
+import { Code, Install, PageHeader, REGISTRY_URL, Section, Wordmark } from "../kit"
 import { components } from "../registry"
 import { href } from "../router"
 
@@ -59,7 +59,6 @@ export default function Introduction() {
               Open the playground
             </Button>
           </div>
-          <Install name="native" />
           <span className="font-mono text-xs text-faint">
             {components.length} components · 1 theme · light and dark
           </span>
@@ -70,6 +69,20 @@ export default function Introduction() {
       </div>
 
       <div className="pt-10">
+        <Section title="Get started" note="You need a shadcn project with Tailwind v4 and a Base UI style.">
+          <ol className="flex flex-col gap-6">
+            <Step n={1} title="Add the registry to components.json">
+              <Code>{`{\n  "registries": {\n    "@proof": "${REGISTRY_URL}"\n  }\n}`}</Code>
+            </Step>
+            <Step n={2} title="Add the theme">
+              <Install name="native" />
+            </Step>
+            <Step n={3} title="Add components">
+              <Code>{"npx shadcn@latest add @proof/button @proof/input @proof/textarea"}</Code>
+            </Step>
+          </ol>
+        </Section>
+
         <Section title="Principles">
           <div className="grid gap-4 sm:grid-cols-2">
             {PRINCIPLES.map(([title, body], i) => (
@@ -197,5 +210,17 @@ function Tile({ id, title, blurb, children }: { id: string; title: string; blurb
         <span className="text-xs text-muted-foreground">{blurb}</span>
       </div>
     </a>
+  )
+}
+
+function Step({ n, title, children }: { n: number; title: string; children: ReactNode }) {
+  return (
+    <li className="flex flex-col gap-2">
+      <span className="text-sm font-semibold">
+        <span className="mr-2 font-mono text-xs text-faint">0{n}</span>
+        {title}
+      </span>
+      {children}
+    </li>
   )
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "proof",
-  "homepage": "https://github.com/serhiitroinin/proof",
+  "homepage": "https://serhiitroinin.github.io/proof",
   "items": [
     {
       "name": "native",
