@@ -1244,8 +1244,7 @@
       ],
       "registryDependencies": [
         "@proof/native",
-        "@proof/kbd",
-        "@proof/motif"
+        "@proof/kbd"
       ],
       "files": [
         {
