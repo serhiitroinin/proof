@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 public/r
 *.tsbuildinfo
+
+# Overrides the global gitignore: the registry and contrast scripts are part of the build.
+!scripts/
