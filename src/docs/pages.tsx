@@ -14,11 +14,6 @@ import Tables from "./tables"
 import Introduction from "./overview/intro"
 import Playground from "./overview/playground"
 import Signature from "./brand/signature"
-import Butler from "./products/butler"
-import Vellum from "./products/vellum"
-import Glu from "./products/glu"
-import TerminalProduct from "./products/terminal"
-import Readme from "./products/readme"
 import Forms from "./patterns/forms"
 import Navigation from "./patterns/navigation"
 import CommandPalette from "./patterns/command"
@@ -30,7 +25,7 @@ import Shell from "./patterns/shell"
 // `blurb` and `keys` feed the ⌘K page search in app.tsx.
 export type Page = { id: string; group: Group; title: string; Render: ComponentType; blurb?: string; keys?: string }
 export type Group = (typeof GROUPS)[number]
-export const GROUPS = ["Overview", "Foundations", "Components", "Patterns", "Products", "Examples", "Brand"] as const
+export const GROUPS = ["Overview", "Foundations", "Components", "Patterns", "Examples", "Brand"] as const
 
 const foundation = (id: string, title: string, Render: ComponentType): Page => ({ id, group: "Foundations", title, Render })
 
@@ -55,11 +50,6 @@ export const PAGES: Page[] = [
   { id: "queues", group: "Patterns", title: "Queues", Render: Queues, blurb: "Agent jobs: running, waiting, done, failed", keys: "queue-01 jobs agent retry" },
   { id: "loading", group: "Patterns", title: "Loading", Render: Loading, blurb: "Skeletons, the running line, first run", keys: "skeleton empty spinner" },
   { id: "shell", group: "Patterns", title: "Editor shell", Render: Shell, blurb: "Tree, canvas and inspector in one window", keys: "shell-01 vellum editor" },
-  { id: "butler", group: "Products", title: "Butler", Render: Butler, blurb: "Tidy folders with an agent you can overrule", keys: "files downloads plan apply undo" },
-  { id: "vellum", group: "Products", title: "Vellum", Render: Vellum, blurb: "A design editor: tree, canvas, inspector, agent", keys: "editor layers frame canvas" },
-  { id: "glu", group: "Products", title: "glu", Render: Glu, blurb: "Glucose, sleep and runs in one dashboard", keys: "dashboard chart health libre whoop" },
-  { id: "cli", group: "Products", title: "Terminal", Render: TerminalProduct, blurb: "The same tools in a terminal", keys: "cli ansi no_color prompt" },
-  { id: "readme", group: "Products", title: "README", Render: Readme, blurb: "The repo page as GitHub renders it", keys: "github install license social" },
   { id: "tables", group: "Examples", title: "Tables", Render: Tables },
   { id: "signature", group: "Brand", title: "Signature", Render: Signature, blurb: "The codes every tool shares", keys: "marker frame backdrop motif marks" },
 ]

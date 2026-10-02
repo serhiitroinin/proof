@@ -307,7 +307,6 @@ export default function ShellPage() {
 
       <Related
         ids={[
-          ["vellum", "Vellum"],
           ["navigation", "Sidebars and trees"],
           ["inspector", "Inspector"],
         ]}
