@@ -13,7 +13,8 @@ import { Switch } from "@/components/ui/switch"
 import { ToolMark, type ToolName } from "@/components/ui/tool-mark"
 import { TOOL_PRESETS } from "@/lib/theme"
 
-import { PageHeader, Section } from "../kit"
+import { Install, PageHeader, Section, Wordmark } from "../kit"
+import { components } from "../registry"
 import { href } from "../router"
 
 const PRINCIPLES: [string, string][] = [
@@ -41,32 +42,30 @@ export default function Introduction() {
       <PageHeader
         group="Overview"
         title="Introduction"
-        lead="One visual language for a family of small, local-first tools: one set of tokens, one signature, one accent per tool."
+        lead="Components, tokens and a signature for small, local-first tools."
       />
 
       <div className="grid gap-10 border-b pb-10 md:grid-cols-[1.2fr_1fr]">
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3">
-            <ToolMark tool="butler" size={44} />
-            <span data-display className="text-4xl leading-none font-bold tracking-tight">
-              Butler
-            </span>
-          </div>
           <p className="max-w-prose text-base text-muted-foreground">
-            Every page is live: registry components, real tokens, light or dark from the header.
+            A shadcn registry. Add a component and you get its source, built on Base UI and Tailwind v4, styled by the Native theme.
           </p>
           <div className="flex flex-wrap gap-2">
-            <Button nativeButton={false} render={<a href={href("colour")} />}>
-              Start with colour
+            <Button nativeButton={false} render={<a href={href("button")} />}>
+              Browse components
               <ArrowRightIcon data-icon="inline-end" />
             </Button>
             <Button variant="outline" nativeButton={false} render={<a href={href("playground")} />}>
               Open the playground
             </Button>
           </div>
+          <Install name="native" />
+          <span className="font-mono text-xs text-faint">
+            {components.length} components · 1 theme · light and dark
+          </span>
         </div>
         <div className="flex min-h-56 items-center justify-center rounded-xl border bg-card">
-          <ToolMark tool="butler" size={160} />
+          <Wordmark className="text-7xl" />
         </div>
       </div>
 
@@ -163,7 +162,7 @@ export default function Introduction() {
         </div>
       </Section>
 
-      <Section title="The family" note="The accent and the mark change per tool. Nothing else does.">
+      <Section title="One accent per tool" note="Wrap a tool in ToolScope to set its accent and mark. Nothing else changes.">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FAMILY.map(({ tool, name }) => (
             <Card key={tool} variant="flat" size="sm">

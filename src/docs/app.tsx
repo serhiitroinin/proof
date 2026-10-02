@@ -13,7 +13,6 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Kbd } from "@/components/ui/kbd"
-import { Motif } from "@/components/ui/motif"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@/components/ui/sidebar"
@@ -22,6 +21,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { setMode, useMode } from "@/hooks/use-mode"
 import "@/hooks/use-signature"
 
+import { Wordmark } from "./kit"
 import { GROUPS, PAGES, pageById, type Page } from "./pages"
 import { href, useRoute, useSection } from "./router"
 import { ThemeEditor } from "./theme-editor"
@@ -106,9 +106,8 @@ function Shell() {
   return (
     <div className="flex min-h-svh flex-col">
       <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b bg-background px-6">
-        <a href={href(PAGES[0].id)} className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
-          <Motif width={28} size={7} />
-          proof
+        <a href={href(PAGES[0].id)} className="text-base">
+          <Wordmark />
         </a>
         <Button variant="outline" size="sm" className="w-56 justify-start" onClick={() => setSearchOpen(true)} aria-label="Search pages">
           <SearchIcon data-icon="inline-start" />

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>.i{stroke:#191b1c}.a{fill:#5e6b4e}@media (prefers-color-scheme:dark){.i{stroke:#eaebed}.a{fill:#798668}}</style>
+  <g class="i" fill="none" stroke-width="4.5">
+    <path d="M5.25 7v24"/>
+    <circle cx="13" cy="15" r="7.25"/>
+  </g>
+  <rect class="a" x="24" y="19" width="6" height="6" rx="0.5"/>
+</svg>

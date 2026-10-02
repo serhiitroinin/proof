@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react"
 import { CheckIcon, CopyIcon } from "lucide-react"
+import { cn } from "cn"
 
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -33,6 +34,14 @@ export function PageHeader({
       {summary && <p className="max-w-prose text-base text-muted-foreground">{summary}</p>}
       {meta && <div className="font-mono text-xs text-faint">{meta}</div>}
     </header>
+  )
+}
+
+export function Wordmark({ className }: { className?: string }) {
+  return (
+    <span data-slot="wordmark" className={cn("font-mono font-bold tracking-tight", className)}>
+      proof<span className="text-tool">.</span>
+    </span>
   )
 }
 

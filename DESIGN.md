@@ -197,6 +197,7 @@ Rules:
 - **Empty states** give one next step.
 - **Badges** for status always carry a word. A dot or icon can join it.
 - **Toasts** show status as an icon colour, not a tinted surface.
+- **Wordmark**: `proof.` in mono bold. The full stop is the only colour, in `tool`. Favicon: `p.` drawn as shapes.
 - **Tool marks** sit next to the wordmark at the same optical height. Do not rotate or shadow a mark, swap its ink and accent, or set the name in another typeface.
 
 ### Forms
